@@ -1,0 +1,49 @@
+<!-- hakkinda.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Zorbalık Kalkanı - Hakkında</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2><img src="{{ url_for('static', filename='logo.png') }}" alt="logo"> Zorbalık Kalkanı</h2>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Mesaj Analizi</a></li>
+        <li><a href="{{ url_for('egitim') }}">Eğitim</a></li>
+        <li><a href="{{ url_for('istatistik') }}">İstatistik</a></li>
+        <li><a class="active" href="{{ url_for('hakkinda') }}">Hakkında</a></li>
+      </ul>
+      <button class="logout">Çıkış Yap</button>
+    </div>
+
+    <div class="main-content">
+      <h1>ℹ️ Uygulama Hakkında</h1>
+      <div class="card fade-in">
+        <p>
+          <strong>Zorbalık Kalkanı</strong>, internet ortamında yazılan mesajları analiz ederek
+          siber zorbalık içerip içermediğini tespit eden yapay zekâ destekli bir platformdur.
+        </p>
+        <p>
+          Bu proje, kullanıcıları bilinçlendirmek, eğitim vermek ve dijital ortamdaki
+          zorbalığı azaltmak amacıyla geliştirilmiştir.
+        </p>
+        <p>
+          Geliştirici: <strong>[Emirhan Şermet]</strong>  
+          <br>E-posta: <a href="mailto:sen@eposta.com">sen@eposta.com</a>
+        </p>
+        <p>
+          Geliştirici: <strong>[Metin Enes Arslan]</strong>  
+          <br>E-posta: <a href="mailto:sen@eposta.com">sen@eposta.com</a>
+        </p>
+        <p>
+          Geliştirici: <strong>[Sefa Mert Aslan]</strong>  
+          <br>E-posta: <a href="mailto:sen@eposta.com">sen@eposta.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

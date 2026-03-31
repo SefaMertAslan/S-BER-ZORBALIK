@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zorbalık Eğitimi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2><img src="{{ url_for('static', filename='logo.png') }}" alt="logo"> Zorbalık Kalkanı</h2>
+      <ul>
+        <li><a href="{{ url_for('home') }}">Ana Sayfa</a></li>
+        <li><a class="active" href="{{ url_for('egitim') }}">Eğitim</a></li>
+        <li><a href="{{ url_for('istatistik') }}">İstatistik</a></li>
+        <li><a href="{{ url_for('hakkinda') }}">Hakkında</a></li> 
+      </ul>
+      <button class="logout">Çıkış Yap</button>
+    </div>
+
+    <div class="main-content">
+      <h1>Zorbalıkla Mücadele Eğitimi</h1>
+      <div class="info-cards">
+        <div class="card fade-in">
+          <h3>Zorbalık Nedir?</h3>
+          <p>Zorbalık, bir kişiye fiziksel ya da duygusal zarar verme amacı taşıyan tekrarlayan davranışlardır.</p>
+        </div>
+        <div class="card fade-in">
+          <h3>Nasıl Tanınır?</h3>
+          <ul>
+            <li>Hakaret</li>
+            <li>Aşağılama</li>
+            <li>Dışlama</li>
+            <li>Tehdit</li>
+          </ul>
+        </div>
+        <div class="card fade-in">
+          <h3>Nasıl Müdahale Edilir?</h3>
+          <p>Empati kur, görmezden gelme, bir yetişkine bildir. Güvenli dijital davranışları öğren.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function cevapla(secim) {
+      if (secim === "bildir") {
+        alert("✅ Doğru! Bildirmek en iyi adımdır.");
+      } else {
+        alert("❌ Hayır! Sessiz kalmak doğru değil.");
+      }
+    }
+  </script>
+  
+</body>
+</html>

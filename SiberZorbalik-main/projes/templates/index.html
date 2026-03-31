@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zorbalık Kalkanı - Mesaj Analizi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  
+  <script>
+    async function livePredict() {
+      const text = document.getElementById('text-input').value;
+
+      // Eğer metin boşsa tahmin yapma
+      if (!text.trim()) {
+        document.getElementById('prediction-result').innerText = "Lütfen metin girin.";
+        return;
+      }
+
+      // Flask sunucusuna istek gönder
+      const response = await fetch('/live_predict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text: text })
+      });
+
+      const data = await response.json();
+      document.getElementById('prediction-result').innerText = `Tahmin: ${data.prediction}`;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" />
+        Zorbalık Kalkanı
+      </h2>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home') }}" class="active">Mesaj Analizi</a></li>
+          <li><a href="{{ url_for('egitim') }}">Eğitim</a></li>
+          <li><a href="{{ url_for('istatistik') }}">İstatistik</a></li>
+          <li><a href="{{ url_for('hakkinda') }}">Hakkında</a></li> 
+        </ul>
+      </nav>
+      <button class="logout">Çıkış Yap</button>
+    </aside>
+
+    <div class="main-content">
+      <!-- Mesaj Yazma ve Yanındaki Kutular -->
+      <div class="form-and-stats-container">
+        <!-- Mesaj Yazma Kutusu -->
+        <div class="form-container">
+          <h2>Mesajını Gir</h2>
+          <textarea name="text" id="text-input" placeholder="Buraya mesajını yaz..." oninput="livePredict()" required></textarea>
+          <p id="prediction-result">Tahmin sonucu burada görünecek.</p>
+          <form action="{{ url_for('predict') }}" method="post">
+            <button type="submit">Gönder</button>
+          </form>
+        </div>
+    
+        <!-- Model Doğruluğu Kutusu -->
+        <div class="model-stats-card">
+          <h3>Model Performansı</h3>
+          <p><strong>Doğruluk:</strong> %95</p>
+          <p><strong>Precision:</strong> %92</p>
+          <p><strong>Recall:</strong> %90</p>
+        </div>
+      </div>
+    
+      <!-- Alt Taraftaki İki Kutu -->
+      <div class="message-analysis-container">
+        <!-- Öneri Kutusu -->
+        <div class="message-card" id="suggestion-box">
+          <h3>Öneri</h3>
+          <p id="suggestion-text">Burada öneriler görünecek.</p>
+        </div>
+    
+        <!-- İstatistik Kutusu -->
+        <div class="message-card">
+          <h3>İstatistikler</h3>
+          <p>
+            <strong>18%</strong><br />
+            Bugün tespit edilen zararlı mesaj oranı
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-cards">
+      <div class="card fade-in" id="bullyExamples" {% if not prediction or prediction|lower != 'zorbalık' %}style="display: none;"{% endif %}>
+        <h3>Zorbalık Örnekleri</h3>
+        <ul>
+          <li>Kimse seni sevmiyor.</li>
+          <li>Sen çok aptalsın.</li>
+          <li>Buraya ait değilsin.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    const suggestions = [
+      "Daha pozitif bir dil kullanmayı deneyin.",
+      "Empati kurarak mesajınızı yeniden yazabilirsiniz.",
+      "Kibar bir üslup kullanmak iletişimi güçlendirir.",
+      "Mesajınızı daha açıklayıcı hale getirebilirsiniz.",
+      "Karşı tarafın duygularını göz önünde bulundurun.",
+      // Daha fazla öneri ekleyebilirsiniz
+    ];
+  
+    function showRandomSuggestion() {
+      const randomIndex = Math.floor(Math.random() * suggestions.length);
+      const suggestionBox = document.getElementById("suggestion-text");
+      suggestionBox.innerText = suggestions[randomIndex];
+    }
+  
+    // "Gönder" butonuna tıklandığında öneriyi güncelle
+    document.querySelector("form").addEventListener("submit", function (event) {
+      event.preventDefault(); // Formun gönderilmesini engelle
+      showRandomSuggestion();
+    });
+  </script>
+</body>
+</html>
