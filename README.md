@@ -1,7 +1,7 @@
 # AIWEBX — Siber Zorbalık Tespit ve Önleme Sistemi 🛡️
 
 AIWEBX, siber zorbalığın tespiti ve önlenmesini amaçlayan yapay zekâ destekli bir web uygulamasıdır.
-Ünides Projesi kapsamında düzenlenen 24 saatlik Hackathon'da **QodeQueen** ekibi tarafından geliştirilmiş
+Ünides Projesi kapsamında düzenlenen 24 saatlik Hackathon'da **510BTS** ekibi tarafından geliştirilmiş
 ve **8 ekip arasından 3.lük ödülü** kazanmıştır.
 
 ---
